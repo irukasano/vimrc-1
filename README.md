@@ -2,6 +2,17 @@
 
 # The Ultimate vimrc
 
+Thanks for amix/vimrc.
+
+TODO
+
+以下をインストール、設定する
+* Shougo/neocomplcache.vim
+* thinca/vim-ref
+* vim-scripts/taglist.vim
+* violetyk/cake.vim
+* その他 irukasano/vimrc の php 設定の取り込み
+
 Over the last 10 years, I have used and tweaked Vim. This configuration is the ultimate vimrc (or at least my version of it).
 
 There are two versions:
@@ -16,13 +27,13 @@ I would, of course, recommend using the awesome version.
 ### Install for your own user only
 The awesome version includes a lot of great plugins, configurations and color schemes that make Vim a lot better. To install it simply do following from your terminal:
 
-	git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+	git clone --depth=1 https://github.com/irukasano/vimrc-1.git ~/.vim_runtime
 	sh ~/.vim_runtime/install_awesome_vimrc.sh
 	
 ### Install for multiple users
 To install for multiple users, the repository needs to be cloned to a location accessible for all the intended users.
 
-	git clone --depth=1 https://github.com/amix/vimrc.git /opt/vim_runtime
+	git clone --depth=1 https://github.com/irukasano/vimrc-1.git /opt/vim_runtime
 	sh ~/.vim_runtime/install_awesome_parameterized.sh /opt/vim_runtime user0 user1 user2
 	# to install for all users with home directories
 	sh ~/.vim_runtime/install_awesome_parameterized.sh /opt/vim_runtime --all
