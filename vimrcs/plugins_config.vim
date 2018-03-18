@@ -77,7 +77,7 @@ set grepprg=/bin/grep\ -nH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
 let NERDTreeShowHidden=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
@@ -171,3 +171,32 @@ nnoremap <silent> <leader>c :call SyntasticCheckCoffeescript()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled=0
 nnoremap <silent> <leader>d :GitGutterToggle<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-ref
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+inoremap <silent><C-k> <C-o>:call<Space>ref#K('normal')<CR><ESC>
+nmap <silent>K <Plug>(ref-keyword)
+let g:ref_no_default_key_mappings = 1
+let g:ref_cache_dir               = '~/.vim_runtime/temp_dirs/vim-ref-cache'
+let g:ref_detect_filetype         = {
+\    'php': 'phpmanual'
+\}
+let g:ref_phpmanual_path = '~/.vim_runtime/data/vim-ref/php-chunked-xhtml'
+let g:ref_use_cache      = 1
+let g:ref_use_vimproc    = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => taglist
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"MEMO:$ ctags --list-maps : ctags supported filetype.
+"MEMO:$ ctags --list-kinds: ctags tlist setting.
+nnoremap <Leader>t :<C-u>Tlist<CR>
+let g:tlist_php_settings        = 'php;n:namespace;c:class;i:interface;t:trait;f:function;d:constan'
+let g:tlist_javascript_settings = 'js;o:object;f:function'
+let g:Tlist_Exit_OnlyWindow     = 1
+let g:Tlist_Show_One_File       = 1
+let g:Tlist_Use_Right_Window    = 1
+let g:Tlist_WinWidth            = 25
+
+

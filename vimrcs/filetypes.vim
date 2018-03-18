@@ -75,3 +75,22 @@ endif
 " => Twig section
 """"""""""""""""""""""""""""""
 autocmd BufRead *.twig set syntax=html filetype=html
+
+
+""""""""""""""""""""""""""""""
+" => PHP section
+""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.ctp setfiletype php.html
+autocmd FileType php :set dictionary=~/.vim_runtime/data/dict/php.dict
+
+" $VIMRUNTIME/syntax/php.vim
+let g:php_baselib       = 1
+let g:php_htmlInStrings = 1
+let g:php_noShortTags   = 1
+let g:php_sql_query     = 1
+
+" $VIMRUNTIME/syntax/sql.vim
+let g:sql_type_default = 'mysql'
+
+
+

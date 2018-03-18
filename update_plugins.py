@@ -54,6 +54,9 @@ lightline.vim https://github.com/itchyny/lightline.vim
 vim-abolish https://github.com/tpope/tpope-vim-abolish
 mru.vim https://github.com/vim-scripts/mru.vim
 vim-markdown https://github.com/plasticboy/vim-markdown
+vim-ref https://github.com/thinca/vim-ref
+taglist https://github.com/vim-scripts/taglist.vim
+cake https://github.com/violetyk/cake.vim
 """.strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'
@@ -62,10 +65,12 @@ SOURCE_DIR = path.join(path.dirname(__file__), 'sources_non_forked')
 
 
 def download_extract_replace(plugin_name, zip_path, temp_dir, source_dir):
+    print('Start {0}'.format(zip_path))
     temp_zip_path = path.join(temp_dir, plugin_name)
 
     # Download and extract file in temp dir
     req = requests.get(zip_path)
+    print(temp_zip_path)
     open(temp_zip_path, 'wb').write(req.content)
 
     zip_f = zipfile.ZipFile(temp_zip_path)
@@ -83,7 +88,6 @@ def download_extract_replace(plugin_name, zip_path, temp_dir, source_dir):
         pass
 
     shutil.move(plugin_temp_path, plugin_dest_path)
-    print(zip_path)
     print('Updated {0}'.format(plugin_name))
 
 
