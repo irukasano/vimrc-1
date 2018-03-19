@@ -178,11 +178,12 @@ nnoremap <silent> <leader>d :GitGutterToggle<cr>
 inoremap <silent><C-k> <C-o>:call<Space>ref#K('normal')<CR><ESC>
 nmap <silent>K <Plug>(ref-keyword)
 let g:ref_no_default_key_mappings = 1
-let g:ref_cache_dir               = '~/.vim_runtime/temp_dirs/vim-ref-cache'
+let g:ref_cache_dir               = $HOME.'/.vim_runtime/temp_dirs/vim-ref-cache'
 let g:ref_detect_filetype         = {
 \    'php': 'phpmanual'
 \}
-let g:ref_phpmanual_path = '~/.vim_runtime/data/vim-ref/php-chunked-xhtml'
+let g:ref_phpmanual_path = $HOME.'/.vim_runtime/data/vim-ref/php-chunked-xhtml'
+"let g:ref_phpmanual_cmd = '/usr/bin/lynx -dump -nonumbers %s'
 let g:ref_use_cache      = 1
 let g:ref_use_vimproc    = 1
 

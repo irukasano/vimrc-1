@@ -45,7 +45,6 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 syntastic https://github.com/scrooloose/syntastic
 vim-repeat https://github.com/tpope/vim-repeat
 vim-commentary https://github.com/tpope/vim-commentary
-vim-go https://github.com/fatih/vim-go
 vim-gitgutter https://github.com/airblade/vim-gitgutter
 gruvbox https://github.com/morhetz/gruvbox
 vim-flake8 https://github.com/nvie/vim-flake8
@@ -55,8 +54,6 @@ vim-abolish https://github.com/tpope/tpope-vim-abolish
 mru.vim https://github.com/vim-scripts/mru.vim
 vim-markdown https://github.com/plasticboy/vim-markdown
 vim-ref https://github.com/thinca/vim-ref
-taglist https://github.com/vim-scripts/taglist.vim
-cake https://github.com/violetyk/cake.vim
 """.strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'
