@@ -172,6 +172,14 @@ nnoremap <silent> <leader>c :call SyntasticCheckCoffeescript()<cr>
 let g:gitgutter_enabled=0
 nnoremap <silent> <leader>d :GitGutterToggle<cr>
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => fugitive.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-ref
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
