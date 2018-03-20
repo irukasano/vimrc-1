@@ -172,6 +172,7 @@ nnoremap <silent> <leader>c :call SyntasticCheckCoffeescript()<cr>
 " => Git gutter (Git diff)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled=0
+let g:gitgutter_highlight_lines = 1
 nnoremap <silent> <leader>d :GitGutterToggle<cr>
 
 
@@ -209,6 +210,7 @@ let g:Tlist_Exit_OnlyWindow     = 1
 let g:Tlist_Show_One_File       = 1
 let g:Tlist_Use_Right_Window    = 1
 let g:Tlist_WinWidth            = 25
+let Tlist_Ctags_Cmd             = '/usr/bin/ctags'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => neocomplcache

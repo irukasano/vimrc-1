@@ -250,7 +250,7 @@ Switch [CWD](http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
 	
 Open `ack.vim` for fast search:
 	
-	map <leader>g :Ack 
+	map <leader>a :Ack 
 
 Quickly open a buffer for scripbble:
 	
@@ -263,7 +263,7 @@ Toggle paste mode on and off:
 Tagjump
 
     nnoremap <leader>j g<C-]>
-    nnoremap <leader>jb g<C-t>
+    nnoremap <leader>jb <C-t>
 
 ### Visual mode mappings
 
