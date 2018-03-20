@@ -68,6 +68,12 @@ Use [msysgit](http://msysgit.github.com/) to checkout the repository and run the
 
 If you have vim aliased as `vi` instead of `vim`, make sure to either alias it: `alias vi=vim`. Otherwise, `apt-get install vim`
 
+### CentOS 7
+Install ag the_silver_searcher
+
+    $ sudo rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+    $ sudo yum install the_silver_searcher --enablerepo=epel
+
 
 ## How to update to latest version?
 
