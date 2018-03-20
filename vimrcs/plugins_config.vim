@@ -202,7 +202,7 @@ let g:ref_use_vimproc    = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "MEMO:$ ctags --list-maps : ctags supported filetype.
 "MEMO:$ ctags --list-kinds: ctags tlist setting.
-nnoremap <Leader>t :<C-u>Tlist<CR>
+nnoremap <leader>t :<C-u>Tlist<CR>
 let g:tlist_php_settings        = 'php;n:namespace;c:class;i:interface;t:trait;f:function;d:constan'
 let g:tlist_javascript_settings = 'js;o:object;f:function'
 let g:Tlist_Exit_OnlyWindow     = 1
@@ -290,14 +290,14 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+"autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_force_omni_patterns')
   let g:neocomplcache_force_omni_patterns = {}
 endif
 " let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
