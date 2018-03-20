@@ -82,6 +82,7 @@ autocmd BufRead *.twig set syntax=html filetype=html
 """"""""""""""""""""""""""""""
 au BufNewFile,BufRead *.ctp setfiletype php.html
 autocmd FileType php :set dictionary=~/.vim_runtime/data/dict/php.dict
+au BufNewFile,BufRead *.php set tags+=$HOME/.vim_runtime/data/tags/php.tags 
 
 " $VIMRUNTIME/syntax/php.vim
 let g:php_baselib       = 1
