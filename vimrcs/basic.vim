@@ -271,6 +271,8 @@ endtry
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" tagjump
+nnoremap <leader>j g<C-]>
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -311,7 +313,7 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.php,*.ctp :call CleanExtraSpaces()
 endif
 
 
