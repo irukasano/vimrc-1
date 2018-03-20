@@ -183,6 +183,12 @@ Open [ctrlp.vim](https://github.com/kien/ctrlp.vim) plugin to quickly find a fil
 
     map <leader>z :Goyo<cr>
 
+[git gutter] show diff inline
+
+    nnoremap <silent> <leader>d :GitGutterToggle<cr>
+    nnoremap <silent> <leader>dj <Plug>GitGutterNextHunk
+    nnoremap <silent> <leader>dk <Plug>GitGutterPrevHunk
+
 [fugitive] git 
 
     nnoremap <silent> <leader>gs :Gstatus<CR>

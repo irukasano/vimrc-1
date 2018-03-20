@@ -174,7 +174,8 @@ nnoremap <silent> <leader>c :call SyntasticCheckCoffeescript()<cr>
 let g:gitgutter_enabled=0
 let g:gitgutter_highlight_lines = 1
 nnoremap <silent> <leader>d :GitGutterToggle<cr>
-
+nnoremap <silent> <leader>dj <Plug>GitGutterNextHunk
+nnoremap <silent> <leader>dk <Plug>GitGutterPrevHunk
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fugitive.vim
