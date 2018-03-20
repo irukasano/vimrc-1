@@ -166,9 +166,12 @@ Open [MRU.vim](https://github.com/vim-scripts/mru.vim) to see the recently open 
 
     map <leader>f :MRU<CR>
 
-Open [ctrlp.vim](https://github.com/kien/ctrlp.vim) plugin to quickly find a file or a buffer (`<leader>j` or `<ctrl>f`):
+Open [ctrlp.vim](https://github.com/kien/ctrlp.vim) plugin to quickly find a file or a buffer (`<leader>cp` or `<ctrl>p`):
     
-    let g:ctrlp_map = '<c-f>'
+    let g:ctrlp_map = '<c-p>'
+    map <leader>cp :CtrlP<cr>
+    map <leader>cb :CtrlPBuffer<cr>
+    map <leader>cd :CtrlPDir<cr>
 
 [NERD Tree](https://github.com/scrooloose/nerdtree) mappings:
 
@@ -179,6 +182,24 @@ Open [ctrlp.vim](https://github.com/kien/ctrlp.vim) plugin to quickly find a fil
 [goyo.vim](https://github.com/junegunn/goyo.vim) and [vim-zenroom2](https://github.com/amix/vim-zenroom2) lets you only focus on one thing at a time. It removes all the distractions and centers the content. It has a special look when editing Markdown, reStructuredText and textfiles. It only has one mapping. (`<leader>z`)
 
     map <leader>z :Goyo<cr>
+
+[fugitive] git 
+
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+
+[vim-ref] show php manual
+
+    nmap <silent>K <Plug>(ref-keyword)
+
+[taglist.vim] show taglist
+
+    nnoremap <leader>t :<C-u>Tlist<CR>
+
+[neocomplcache] complication
+
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 
 ### Normal mode mappings
@@ -239,6 +260,10 @@ Toggle paste mode on and off:
 	
 	map <leader>pp :setlocal paste!<cr>
 
+Tagjump
+
+    nnoremap <leader>j g<C-]>
+    nnoremap <leader>jb g<C-t>
 
 ### Visual mode mappings
 
@@ -273,9 +298,9 @@ Quickly insert parenthesis/brackets/etc.:
     inoremap $2 []<esc>i
     inoremap $3 {}<esc>i
     inoremap $4 {<esc>o}<esc>O
-    inoremap $q ''<esc>i
-    inoremap $e ""<esc>i
-    inoremap $t <><esc>i
+    inoremap $5 ''<esc>i
+    inoremap $6 ""<esc>i
+    inoremap $7 <><esc>i
 
 Insert the current date and time (useful for timestamps):
 
