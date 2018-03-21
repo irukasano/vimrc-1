@@ -214,6 +214,13 @@ let g:Tlist_WinWidth            = 25
 let Tlist_Ctags_Cmd             = '/usr/bin/ctags'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-phpfmt
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:phpfmt_standard = 'PSR2'
+let g:phpfmt_autosave = 0
+map <leader>pf :PhpFmt<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => neocomplcache
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Omni completion
