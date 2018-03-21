@@ -220,6 +220,25 @@ let g:Tlist_WinWidth            = 25
 let Tlist_Ctags_Cmd             = '/usr/bin/ctags'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-phpfmt
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:phpfmt_standard = 'PSR2'
+"let g:phpfmt_autosave = 0
+"let g:phpfmt_tmp_dir = $HOME . '/.vim_runtime/temp_dirs/'
+"map <leader>pf :PhpFmt<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-php-cs-fixer
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:php_cs_fixer_path = $HOME . '/.vim_runtime/bin/php-cs-fixer.phar'
+let g:php_cs_fixer_rules = '@PSR2'         " options: --rules (default:@PSR2)
+"let g:php_cs_fixer_cache = '.php_cs.cache' " options: --cache-file
+"let g:php_cs_fixer_config_file = '.php_cs' " options: --config
+
+nnoremap <silent><leader>pfd :call PhpCsFixerFixDirectory()<CR>
+nnoremap <silent><leader>pf :call PhpCsFixerFixFile()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => neocomplcache
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Omni completion
