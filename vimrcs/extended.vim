@@ -35,8 +35,16 @@ colorscheme peaksea
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast editing and reloading of vimrc configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>e :e! ~/.vim_runtime/my_configs.vim<cr>
-autocmd! bufwritepost ~/.vim_runtime/my_configs.vim source ~/.vim_runtime/my_configs.vim
+"map <leader>e :e! ~/.vim_runtime/my_configs.vim<cr>
+"autocmd! bufwritepost ~/.vim_runtime/my_configs.vim source ~/.vim_runtime/my_configs.vim
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => change encoding to
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>eu :e ++enc=utf-8<CR>
+map <leader>ec :e ++enc=cp932<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -277,6 +277,12 @@ Tagjump
     nnoremap <leader>j g<C-]>
     nnoremap <leader>jb <C-t>
 
+Change encoding
+
+    map <leader>eu :e ++enc=utf-8
+    map <leader>ec :e ++enc=cp932
+
+
 ### Visual mode mappings
 
 Visual mode pressing `*` or `#` searches for the current selection:

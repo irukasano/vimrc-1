@@ -114,9 +114,14 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
       \             ['fugitive', 'readonly', 'filename', 'modified'] ],
-      \   'right': [ [ 'lineinfo' ], ['percent'] ]
+      \   'right': [ [ 'lineinfo' ], 
+      \              ['percent'], 
+      \              ['fileformat','fileencoding', 'filetype'] ]
       \ },
       \ 'component': {
+      \   'fileformat': '%{&filetype=="help"?"":&fileformat}',
+      \   'fileencoding': '%{&filetype=="help"?"":(strlen(&fenc) ? &fenc : &enc)}',
+      \   'filetype': '%{&filetype=="help"?"":&filetype}',
       \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
       \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
       \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
@@ -183,6 +188,7 @@ nnoremap <silent> <leader>dk <Plug>GitGutterPrevHunk
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-ref
