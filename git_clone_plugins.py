@@ -57,8 +57,8 @@ mru.vim https://github.com/vim-scripts/mru.vim
 vim-markdown https://github.com/plasticboy/vim-markdown
 vim-ref https://github.com/thinca/vim-ref
 taglist.vim https://github.com/vim-scripts/taglist.vim
-vim-phpfmt https://github.com/beanworks/vim-phpfmt
 neocomplcache.vim https://github.com/Shougo/neocomplcache.vim
+vim-php-cs-fixer https://github.com/stephpy/vim-php-cs-fixer
 """.strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'

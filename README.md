@@ -201,6 +201,11 @@ Open [ctrlp.vim](https://github.com/kien/ctrlp.vim) plugin to quickly find a fil
     nnoremap <silent> <leader>gb :Gblame<CR>
     nnoremap <silent> <leader>gd :Gdiff<CR>
 
+[php_cs_fixer] format php
+
+    nnoremap <silent><leader>pfd :call PhpCsFixerFixDirectory()<CR>
+    nnoremap <silent><leader>pf :call PhpCsFixerFixFile()<CR>
+
 [vim-ref] show php manual
 
     nmap <silent>K <Plug>(ref-keyword)
