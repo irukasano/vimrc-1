@@ -1,59 +1,74 @@
 ![VIM](https://dnp4pehkvoo6n.cloudfront.net/43c5af597bd5c1a64eb1829f011c208f/as/Ultimate%20Vimrc.svg)
 
-# The Ultimate vimrc
+# The Ultimate vimrc ( with php)
 
 Thanks for amix/vimrc.
 
-TODO
+[amix/vimrc](https://github.com/amix/vimrc) は素晴らしい .vimrc です。
+そのままでも充分使いやすいものですが、php の開発により役に立つプラグインと、
+これまでの私の vim における慣れを追加しカスタマイズしました。
 
-以下をインストール、設定する
-* Shougo/neocomplcache.vim
-* thinca/vim-ref
-* vim-scripts/taglist.vim
-* violetyk/cake.vim
-* その他 irukasano/vimrc の php 設定の取り込み
+amix/vimrc をほとんどそのまま引き継いでおりますが、私の使いやすいように
+勝手にいろいろと修正しています。そのため、使いやすい部分があれば amix/vimrc 
+のおかげですが、もし問題点や使いづらい点があれば私が原因です。
 
-Over the last 10 years, I have used and tweaked Vim. This configuration is the ultimate vimrc (or at least my version of it).
+せっかくなので（そして私自身のため）この README を日本語として書き起こしました。
+もとの README を翻訳したものではなく、私自身がより理解を深め、
+またもしほかの人が使う場合にも伝わりやすいように書いています。
 
-There are two versions:
+また、現時点で私が理解しきっておらず、どうしてこのように動いているのか、
+またこの挙動がどの設定やプラグインによるものなのか、
+わからない部分もあります。
 
-* **The Basic**: If you want something small just copy [basic.vim](https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim) into your ~/.vimrc and you will have a good basic setup
-* **The Awesome**: Includes a ton of useful plugins, color schemes, and configurations
+したがって誤記も当然あり得ますので、お気づきの方はご指摘くだされば幸いです。
 
-I would, of course, recommend using the awesome version.
+---
+
+この .vimrc セットには２つのバージョンがあります。
+
+* **基本バージョン**：[basic.vim](https://github.com/irukasano/vimrc/blob/master/vimrcs/basic.vim)の内容をコピーし、~/.vimrc にペーストして使ってください
+* **素敵バージョン**：役に立つプラグインやカラースキーム、その他 vim 設定がたくさん含まれているバージョンです。
+
+私 irukasano ももちろん素敵バージョンを使っています。
+基本バージョンは使っていないのでどんな使い勝手かも、正直わかりません。
 
 
-## How to install the Awesome version?
-### Install for your own user only
-The awesome version includes a lot of great plugins, configurations and color schemes that make Vim a lot better. To install it simply do following from your terminal:
+## 素敵バージョンのインストール
+### 自分だけ使う
+
+自分だけ使いたい場合は、github から clone し、素敵バージョン用のインストールスクリプトを起動するだけです。
+インストールスクリプトは、~/.vimrc に 素敵バージョンの vim 設定を追記しますので、
+心配な方は実行前に現在の .vimrc をバックアップすることをお勧めします。
 
 	git clone --depth=1 https://github.com/irukasano/vimrc-1.git ~/.vim_runtime
 	sh ~/.vim_runtime/install_awesome_vimrc.sh
-	
-### Install for multiple users
-To install for multiple users, the repository needs to be cloned to a location accessible for all the intended users.
+
+### 複数ユーザーで使う
+複数ユーザーで使う場合は、リポジトリから取得した vimrc の設定すべてに、すべてのユーザーがアクセスできる必要があります。
+以下の例では、`/opt/vim_runtime` としていますが、すべてのユーザーがアクセスできるのであれば
+このディレクトリである必要はありません。
 
 	git clone --depth=1 https://github.com/irukasano/vimrc-1.git /opt/vim_runtime
 	sh ~/.vim_runtime/install_awesome_parameterized.sh /opt/vim_runtime user0 user1 user2
 	# to install for all users with home directories
 	sh ~/.vim_runtime/install_awesome_parameterized.sh /opt/vim_runtime --all
-	
-Naturally, `/opt/vim_runtime` can be any directory, as long as all the users specified have read access.
 
-## Fonts
+## フォント
 
-I recommend using [IBM Plex Mono font](https://github.com/IBM/plex) (it's an open-source and awesome font that can make your code beautiful). The Awesome vimrc is already setup to try to use it.
+もとの amix/vimrc では、[IBM Plex Mono font](https://github.com/IBM/plex) が勧められていますが
+多分日本語を含むマルチバイトフォントのことは考えられていないと思います。
 
-Some other fonts that Awesome will try to use:
+私が使っているのは、以下ですが、どちらも読みやすいと思います。
 
-* [Hack](http://sourcefoundry.org/hack/)
-* [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/)
+* MeiryoKe：Windows10 に付属のメイリオを等幅にしたものです。自分でメイリオにパッチをあてて作成します。参考）[Windows で見やすくて綺麗なフォント表示 - MeiryoKe に変更し、MacType で滑らかにする](https://digitalbox.jp/meiryoke-fixed-fonts-windows10/)
+* Consolas：Microsoft Office についてくる等幅英字フォントです。ただ、そのままでは日本語がうまく表示できないため、たとえば TeraTerm ではちょっと設定を工夫してあげる必要があります。参考）[Windows7のTeraTermでConsolasフォント使用時に日本語を表示する方法](https://gist.github.com/o-gh/5ac244d2fc5d8002a6e32d0a15c7717d)
 
-## How to install the Basic version?
 
-The basic version is just one file and no plugins. Just copy [basic.vim](https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim) and paste it into your vimrc.
+## 基本バージョンのインストール
 
-The basic version is useful to install on remote servers where you don't need many plugins, and you don't do many edits.
+基本バージョンは、プラグインなしの１ファイルのみです。
+[basic.vim](https://github.com/irukasano/vimrc/blob/master/vimrcs/basic.vim) をコピーアンドペーストし、 自分の ~/.vimrc に張り付けします。
+または、以下の方法で github から clone し、基本バージョン用のインストールスクリプトを起動するのでもできます。
 
 	git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 	sh ~/.vim_runtime/install_basic_vimrc.sh
@@ -64,15 +79,23 @@ The basic version is useful to install on remote servers where you don't need ma
 Use [msysgit](http://msysgit.github.com/) to checkout the repository and run the installation instructions above. No special instructions needed ;-)
 
 
-## How to install on Linux
+## Linux へのインストール
 
-If you have vim aliased as `vi` instead of `vim`, make sure to either alias it: `alias vi=vim`. Otherwise, `apt-get install vim`
+Linux では `vi` と `vim` がインストールされていることが多く、これらはとても良く似ているのですが異なるものです。
+irukasano/vimrc-1 は（amix/vimrc と同様）、vim のための設定ファイルです。
+`vi` と `vim` は ~/.vimrc を共有しているため、vi を起動すると、起動時にエラーが表示されます。
 
-### CentOS 7
-Install ag the_silver_searcher
+そこで、`vi` を起動した場合も `vim` が起動するように、以下のようにエイリアスを ~/.bashrc に設定してください。
 
-    $ sudo rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
-    $ sudo yum install the_silver_searcher --enablerepo=epel
+    alias vi=vim
+
+vim がインストールされていない環境では、vim をインストールしてください。
+
+    (Ubuntu)
+    apt-get install vim
+
+    (CentOS)
+    yum install vim
 
 
 ## How to update to latest version?
@@ -268,6 +291,11 @@ Switch [CWD](http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
 Open `ack.vim` for fast search:
 	
 	map <leader>a :Ack 
+
+Ack を使うために、環境によっては以下のようにして ag(the_silver_searcher)のインストールが必要かもしれません。
+
+    $ sudo rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+    $ sudo yum install the_silver_searcher --enablerepo=epel
 
 Quickly open a buffer for scripbble:
 	
