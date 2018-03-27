@@ -211,6 +211,7 @@ pathogen プラグインが自動的に読み込みます。
 |`<leader>`         | `,`                           |
 |`<space>`          | スペースキー                  |
 |`<cr>`             | エンターキー                  |
+|`<c-`              | ctrl キー                     |
 
 ### ノーマルモード
 
@@ -233,10 +234,8 @@ pathogen プラグインが自動的に読み込みます。
 |`<leader>te`       | ※TODO - Opens a new tab with the current buffer's path. Super useful when editing files in the same directory. |
 |`<leader>cd`       | カレントディレクトリを移動する。[CWD](http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file) |
 |`<leader>q`        | 走り書き用のバッファを開く                                                                |
-|`<leader>pp`       | ペーストモード、通常モードの切り替えを行う。
-通常モードで貼り付けすると勝手にインデントしたりしてうまく貼りつけできないが、ペーストモードにするとうまくいく。|
-|`<leader>j`        | カーソル下にある関数、メソッドの定義元にジャンプする。
-この機能を使うためにはタグファイルを作成する必要がある。※TODO                                                  |
+|`<leader>pp`       | ペーストモード、通常モードの切り替えを行う。<br>通常モードで貼り付けすると勝手にインデントしたりしてうまく貼りつけできないが、ペーストモードにするとうまくいく。|
+|`<leader>j`        | カーソル下にある関数、メソッドの定義元にジャンプする。<br> この機能を使うためにはタグファイルを作成する必要がある。※TODO |
 |`<leader>jb`       | タグジャンプしたあと、元の位置に戻る。                                                    |
 |`<leader>eu`       | 開いているファイルを utf-8 で開きなおす。                                                 |
 |`<leader>ec`       | 開いているファイルを cp932(windows sjis) で開きなおす。                                   |
