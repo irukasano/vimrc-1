@@ -60,7 +60,7 @@ amix/vimrc をほとんどそのまま引き継いでおりますが、私の使
 
 私が使っているのは、以下ですが、どちらも読みやすいと思います。
 
-* MeiryoKe：Windows10 に付属のメイリオを等幅にしたものです。自分でメイリオにパッチをあてて作成します。参考）[Windows で見やすくて綺麗なフォント表示 - MeiryoKe に変更し、MacType で滑らかにする](https://digitalbox.jp/meiryoke-fixed-fonts-windows10/)
+* MeiryoKe Console：Windows10 に付属のメイリオを等幅にしたものです。自分でメイリオにパッチをあてて作成します。参考）[Windows で見やすくて綺麗なフォント表示 - MeiryoKe に変更し、MacType で滑らかにする](https://digitalbox.jp/meiryoke-fixed-fonts-windows10/)
 * Consolas：Microsoft Office についてくる等幅英字フォントです。ただ、そのままでは日本語がうまく表示できないため、たとえば TeraTerm ではちょっと設定を工夫してあげる必要があります。参考）[Windows7のTeraTermでConsolasフォント使用時に日本語を表示する方法](https://gist.github.com/o-gh/5ac244d2fc5d8002a6e32d0a15c7717d)
 
 
@@ -98,9 +98,9 @@ vim がインストールされていない環境では、vim をインストー
     yum install vim
 
 
-## How to update to latest version?
+## 最新版へのアップデート方法
 
-Just do a git rebase!
+git rebase するだけです！
 
     cd ~/.vim_runtime
     git pull --rebase
@@ -147,16 +147,26 @@ I recommend reading the docs of these plugins to understand them better. Each pl
 Remove all clutter and focus only on the essential. Similar to iA Writer or Write Room [Read more here](http://amix.dk/blog/post/19744)
 
 
-## Included color schemes
+## 同梱されているカラースキーム
 
-* [peaksea](https://github.com/vim-scripts/peaksea): The default
+* [gruvbox](https://github.com/morhetz/gruvbox):初期設定ではこれを使っています
+* [peaksea](https://github.com/vim-scripts/peaksea): amix/vimrc の初期設定はこれです
 * [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
 * [vim-irblack](https://github.com/wgibbs/vim-irblack)
 * [mayansmoke](https://github.com/vim-scripts/mayansmoke)
 * [vim-pyte](https://github.com/therubymug/vim-pyte)
 
+一時的に変更したい場合は、vim で以下のようにします。
 
-## Included modes
+    :colorscheme peaksea
+    :set background=dark
+
+永続的に変更したい場合、vimrc/extended.vim の colorscheme, background 設定の部分を書き換えてください。
+
+
+## 同梱されているモード
+
+※TODO ここはまだよくわかっていない
 
 * [vim-coffee-script](https://github.com/kchmck/vim-coffee-script)
 * [vim-less](https://github.com/groenewege/vim-less)
@@ -166,154 +176,70 @@ Remove all clutter and focus only on the essential. Similar to iA Writer or Writ
 * [vim-go](https://github.com/fatih/vim-go)
 
 
-## How to include your own stuff?
+## 自分用にカスタマイズするには
 
-After you have installed the setup, you can create **~/.vim_runtime/my_configs.vim** to fill in any configurations that are important for you. For instance, my **my_configs.vim** looks like this:
+セットアップ完了後、**~/.vim_runtime/my_configs.vim** を作成し、vim 設定をここに記入し保存することで
+独自の設定をすることができます。
+
+たとえば、amix/vimrc の作者は以下のようにしているそうです。
 
 	~/.vim_runtime (master)> cat my_configs.vim
 	map <leader>ct :cd ~/Desktop/Todoist/todoist<cr>
 	map <leader>cw :cd ~/Desktop/Wedoist/wedoist<cr> 
 
-You can also install your plugins, for instance, via pathogen you can install [vim-rails](https://github.com/tpope/vim-rails):
+プラグインをインストールしたい場合は、**~/.vim_runtime/sources_non_forked** に git clone することで
+pathogen プラグインが自動的に読み込みます。
+
+たとえば、[vim-rails](https://github.com/tpope/vim-rails) をインストールしたい場合は、以下のようにします。
 
 	cd ~/.vim_runtime
 	git clone git://github.com/tpope/vim-rails.git sources_non_forked/vim-rails
 
 
-## Key Mappings
+## キーマッピング
 
-The [leader](http://learnvimscriptthehardway.stevelosh.com/chapters/06.html#leader) is `,`, so whenever you see `<leader>` it means `,`.
+以下キーマッピングの設定にある [leader](http://learnvimscriptthehardway.stevelosh.com/chapters/06.html#leader) は `,` で設定されています。
 
+したがって `<leader>` は `,` と読み替えて入力してください。
+たとえば `<leader>o` とは、`,o` と入力する、ということです。
 
-### Plugin related mappings
+また、`c-` は ctrl ボタンを意味します。`<c-a>` のような記述の場合、ctrl ボタンを押しながら a を押す、
+という意味です。
 
-Open [bufexplorer](https://github.com/vim-scripts/bufexplorer.zip) to see and manage the current buffers (`<leader>o`):
-    
-    map <leader>o :BufExplorer<cr>
+| 表記              | キー                          |
+|-------------------|-------------------------------|
+|`<leader>`         | `,`                           |
+|`<space>`          | スペースキー                  |
+|`<cr>`             | エンターキー                  |
 
-Open [MRU.vim](https://github.com/vim-scripts/mru.vim) to see the recently open files (`<leader>f`):
+### ノーマルモード
 
-    map <leader>f :MRU<CR>
-
-Open [ctrlp.vim](https://github.com/kien/ctrlp.vim) plugin to quickly find a file or a buffer (`<leader>cp` or `<ctrl>p`):
-    
-    let g:ctrlp_map = '<c-p>'
-    map <leader>cp :CtrlP<cr>
-    map <leader>cb :CtrlPBuffer<cr>
-    map <leader>cd :CtrlPDir<cr>
-
-[NERD Tree](https://github.com/scrooloose/nerdtree) mappings:
-
-    map <leader>nn :NERDTreeToggle<cr>
-    map <leader>nb :NERDTreeFromBookmark 
-    map <leader>nf :NERDTreeFind<cr>
-
-[goyo.vim](https://github.com/junegunn/goyo.vim) and [vim-zenroom2](https://github.com/amix/vim-zenroom2) lets you only focus on one thing at a time. It removes all the distractions and centers the content. It has a special look when editing Markdown, reStructuredText and textfiles. It only has one mapping. (`<leader>z`)
-
-    map <leader>z :Goyo<cr>
-
-[git gutter] show diff inline
-
-    nnoremap <silent> <leader>d :GitGutterToggle<cr>
-    nnoremap <silent> <leader>dj <Plug>GitGutterNextHunk
-    nnoremap <silent> <leader>dk <Plug>GitGutterPrevHunk
-
-[fugitive] git 
-
-    nnoremap <silent> <leader>gs :Gstatus<CR>
-    nnoremap <silent> <leader>gb :Gblame<CR>
-    nnoremap <silent> <leader>gd :Gdiff<CR>
-
-[php_cs_fixer] format php
-
-    nnoremap <silent><leader>pfd :call PhpCsFixerFixDirectory()<CR>
-    nnoremap <silent><leader>pf :call PhpCsFixerFixFile()<CR>
-
-[vim-ref] show php manual
-
-    nmap <silent>K <Plug>(ref-keyword)
-
-[taglist.vim] show taglist
-
-    nnoremap <leader>t :<C-u>Tlist<CR>
-
-[neocomplcache] complication
-
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-
-### Normal mode mappings
-
-Fast saving of a buffer (`<leader>w`):
-
-	nmap <leader>w :w!<cr>
-	
-Map `<Space>` to `/` (search) and `<Ctrl>+<Space>` to `?` (backwards search):
-	
-	map <space> /
-	map <c-space> ?
-	map <silent> <leader><cr> :noh<cr>
-
-Disable highlights when you press `<leader><cr>`:
-	
-	map <silent> <leader><cr> :noh<cr>
-
-Smart way to move between windows (`<ctrl>j` etc.):
-	
-	map <C-j> <C-W>j
-	map <C-k> <C-W>k
-	map <C-h> <C-W>h
-	map <C-l> <C-W>l
-
-Closing of the current buffer(s) (`<leader>bd` and (`<leader>ba`)):
-	
-	" Close current buffer
-	map <leader>bd :Bclose<cr>
-	
-	" Close all buffers
-	map <leader>ba :1,1000 bd!<cr>
-	
-Useful mappings for managing tabs:
-	
-	map <leader>tn :tabnew<cr>
-	map <leader>to :tabonly<cr>
-	map <leader>tc :tabclose<cr>
-	map <leader>tm :tabmove 
-	
-	" Opens a new tab with the current buffer's path
-	" Super useful when editing files in the same directory
-	map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-	
-Switch [CWD](http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file) to the directory of the open buffer:
-	
-	map <leader>cd :cd %:p:h<cr>:pwd<cr>
-	
-Open `ack.vim` for fast search:
-	
-	map <leader>a :Ack 
-
-Ack を使うために、環境によっては以下のようにして ag(the_silver_searcher)のインストールが必要かもしれません。
-
-    $ sudo rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
-    $ sudo yum install the_silver_searcher --enablerepo=epel
-
-Quickly open a buffer for scripbble:
-	
-	map <leader>q :e ~/buffer<cr>
-
-Toggle paste mode on and off:
-	
-	map <leader>pp :setlocal paste!<cr>
-
-Tagjump
-
-    nnoremap <leader>j g<C-]>
-    nnoremap <leader>jb <C-t>
-
-Change encoding
-
-    map <leader>eu :e ++enc=utf-8
-    map <leader>ec :e ++enc=cp932
+| キー              | 操作                                                                                      |
+|-------------------|-------------------------------------------------------------------------------------------|
+|`<leader>w`        | w! したのと同じ。強制保存。                                                               |
+|`<space>`          | / したのと同じ。開いているファイルの文字列検索を行う。                                    |
+|`<c-space>`        | ? したのと同じ。開いているファイルを下から上に文字列検索を行う。                          |
+|`<leader><cr>`     | :noh したのと同じ。検索文字列のハイライト表示を消す。                                     |
+|`<c-j>`            | 分割ウィンドウが開いている状態で、下の分割ウィンドウにカーソル移動する                    |
+|`<c-k>`            | 分割ウィンドウが開いている状態で、上の分割ウィンドウにカーソル移動する                    |
+|`<c-h>`            | 分割ウィンドウが開いている状態で、右の分割ウィンドウにカーソル移動する                    |
+|`<c-l>`            | 分割ウィンドウが開いている状態で、左の分割ウィンドウにカーソル移動する                    |
+|`<leader>bd`       | 現在開いているバッファを閉じる                                                            |
+|`<leader>ba`       | すべてのバッファを閉じる                                                                  |
+|`<leader>tn`       | :tabnew と同じ。タブを新しく開く。                                                        |
+|`<leader>to`       | :tabonly と同じ。※TODO                                                                   |
+|`<leader>tc`       | :tabclose と同じ。タブを閉じる。                                                          |
+|`<leader>tm`       | :tabmove と同じ。タブ位置を移動する。`<leader>tm 0` で、現在のタブを一番左に移動する。    |
+|`<leader>te`       | ※TODO - Opens a new tab with the current buffer's path. Super useful when editing files in the same directory. |
+|`<leader>cd`       | カレントディレクトリを移動する。[CWD](http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file) |
+|`<leader>q`        | 走り書き用のバッファを開く                                                                |
+|`<leader>pp`       | ペーストモード、通常モードの切り替えを行う。
+通常モードで貼り付けすると勝手にインデントしたりしてうまく貼りつけできないが、ペーストモードにするとうまくいく。|
+|`<leader>j`        | カーソル下にある関数、メソッドの定義元にジャンプする。
+この機能を使うためにはタグファイルを作成する必要がある。※TODO                                                  |
+|`<leader>jb`       | タグジャンプしたあと、元の位置に戻る。                                                    |
+|`<leader>eu`       | 開いているファイルを utf-8 で開きなおす。                                                 |
+|`<leader>ec`       | 開いているファイルを cp932(windows sjis) で開きなおす。                                   |
 
 
 ### Visual mode mappings
@@ -411,7 +337,78 @@ Cope mappings:
     map <leader>p :cp<cr>
 
 
-## How to uninstall
-Just do following:
-* Remove `~/.vim_runtime`
-* Remove any lines that reference `.vim_runtime` in your `~/.vimrc`
+
+### Plugin related mappings
+	
+Open `ack.vim` for fast search:
+	
+	map <leader>a :Ack 
+
+Ack を使うために、環境によっては以下のようにして ag(the_silver_searcher)のインストールが必要かもしれません。
+
+    $ sudo rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+    $ sudo yum install the_silver_searcher --enablerepo=epel
+
+Open [bufexplorer](https://github.com/vim-scripts/bufexplorer.zip) to see and manage the current buffers (`<leader>o`):
+    
+    map <leader>o :BufExplorer<cr>
+
+Open [MRU.vim](https://github.com/vim-scripts/mru.vim) to see the recently open files (`<leader>f`):
+
+    map <leader>f :MRU<CR>
+
+Open [ctrlp.vim](https://github.com/kien/ctrlp.vim) plugin to quickly find a file or a buffer (`<leader>cp` or `<ctrl>p`):
+    
+    let g:ctrlp_map = '<c-p>'
+    map <leader>cp :CtrlP<cr>
+    map <leader>cb :CtrlPBuffer<cr>
+    map <leader>cd :CtrlPDir<cr>
+
+[NERD Tree](https://github.com/scrooloose/nerdtree) mappings:
+
+    map <leader>nn :NERDTreeToggle<cr>
+    map <leader>nb :NERDTreeFromBookmark 
+    map <leader>nf :NERDTreeFind<cr>
+
+[goyo.vim](https://github.com/junegunn/goyo.vim) and [vim-zenroom2](https://github.com/amix/vim-zenroom2) lets you only focus on one thing at a time. It removes all the distractions and centers the content. It has a special look when editing Markdown, reStructuredText and textfiles. It only has one mapping. (`<leader>z`)
+
+    map <leader>z :Goyo<cr>
+
+[git gutter] show diff inline
+
+    nnoremap <silent> <leader>d :GitGutterToggle<cr>
+    nnoremap <silent> <leader>dj <Plug>GitGutterNextHunk
+    nnoremap <silent> <leader>dk <Plug>GitGutterPrevHunk
+
+[fugitive] git 
+
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+
+[php_cs_fixer] format php
+
+    nnoremap <silent><leader>pfd :call PhpCsFixerFixDirectory()<CR>
+    nnoremap <silent><leader>pf :call PhpCsFixerFixFile()<CR>
+
+[vim-ref] show php manual
+
+    nmap <silent>K <Plug>(ref-keyword)
+
+[taglist.vim] show taglist
+
+    nnoremap <leader>t :<C-u>Tlist<CR>
+
+[neocomplcache] complication
+
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+
+## アンインストール方法
+
+以下の２つを行えばアンインストールの完了です。
+
+* `~/.vim_runtime` ディレクトリの削除
+* `~/.vimrc` に含まれる `.vim_runtime` への参照の削除
+
+
