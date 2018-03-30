@@ -355,15 +355,15 @@ Cope mappings:
 	
 | キー              | プラグイン     | 操作                                                                                     |
 |-------------------|----------------|------------------------------------------------------------------------------------------|
-| <leader>a         | [ack.vim](https://github.com/mileszs/ack.vim) | `:vimgrep *keyword* \*\*/\*.php | cw` 的なファイル横断検索の高速化＆簡易化処理。`<leader>a *keyword*` でほとんど同様のことが可能。ただし注１参照。|
-| <leader>o         | [bufexplorer](https://github.com/vim-scripts/bufexplorer.zip) | 現在のバッファを参照できる。              |
-| <leader>f         | [MRU.vim](https://github.com/vim-scripts/mru.vim) | 最近開いたファイルの一覧を参照できる。                |
-| <leader>cp<br><c-p> | [ctrlp.vim](https://github.com/kien/ctrlp.vim) | カレントディレクトリ配下にあるファイルをインクリメンタルサーチして開くことができる。|
-| <leader>cb        | [ctrlp.vim](https://github.com/kien/ctrlp.vim) | TODO :CtrlPBuffer                                        |
-| <leader>cd        | [ctrlp.vim](https://github.com/kien/ctrlp.vim) | TODO :CtrlPDir                                           |
-| <leader>nn        | [NERD Tree](https://github.com/scrooloose/nerdtree) | vim でツリー表示するための NERDTree をウィンドウ左に表示したり非表示にしたりする。注２参照。|
-| <leader>nb        | [NERD Tree](https://github.com/scrooloose/nerdtree) | TODO :NERDTreeFromBookmark                          |
-| <leader>nf        | [NERD Tree](https://github.com/scrooloose/nerdtree) | TODO :NERDTreeFind                                  |
+| `<leader>a`       | [ack.vim](https://github.com/mileszs/ack.vim) | `:vimgrep *keyword* \*\*/\*.php | cw` 的なファイル横断検索の高速化＆簡易化処理。`<leader>a *keyword*` でほとんど同様のことが可能。ただし注１参照。|
+| `<leader>o`       | [bufexplorer](https://github.com/vim-scripts/bufexplorer.zip) | 現在のバッファを参照できる。              |
+| `<leader>f`       | [MRU.vim](https://github.com/vim-scripts/mru.vim) | 最近開いたファイルの一覧を参照できる。                |
+| `<leader>cp`<br>`<c-p>` | [ctrlp.vim](https://github.com/kien/ctrlp.vim) | カレントディレクトリ配下にあるファイルをインクリメンタルサーチして開くことができる。|
+| `<leader>cb`      | [ctrlp.vim](https://github.com/kien/ctrlp.vim) | TODO :CtrlPBuffer                                        |
+| `<leader>cd`      | [ctrlp.vim](https://github.com/kien/ctrlp.vim) | TODO :CtrlPDir                                           |
+| `<leader>nn`      | [NERD Tree](https://github.com/scrooloose/nerdtree) | vim でツリー表示するための NERDTree をウィンドウ左に表示したり非表示にしたりする。注２参照。|
+| `<leader>nb`      | [NERD Tree](https://github.com/scrooloose/nerdtree) | TODO :NERDTreeFromBookmark                          |
+| `<leader>nf`      | [NERD Tree](https://github.com/scrooloose/nerdtree) | TODO :NERDTreeFind                                  |
 
 
 [goyo.vim](https://github.com/junegunn/goyo.vim) and [vim-zenroom2](https://github.com/amix/vim-zenroom2) lets you only focus on one thing at a time. It removes all the distractions and centers the content. It has a special look when editing Markdown, reStructuredText and textfiles. It only has one mapping. (`<leader>z`)
@@ -412,20 +412,20 @@ NERDTree では以下のコマンドで、ファイル、ディレクトリに�
 
 | コマンド  | 操作                                                                          |
 |-----------|-------------------------------------------------------------------------------|
-| o<br><enter> | カーソル下のファイルまたはディレクトリを開く                               |
-| t         | カーソル下のタブで開きそちらを表示する。                                      |
-| T         | カーソル下のタブで開くが、そちらは表示せず現在のタブにとどまる。              |
-| P         | ルートディレクトリの位置へカーソル移動する。                                  |
-| p         | 親ディレクトリの位置へカーソル移動する。                                      |
-| j         | ひとつ下へカーソル移動する                                                    |
-| k         | ひとつ上へカーソル移動する                                                    |
-| u         | 親ディレクトリでツリーを開きなおす                                            |
-| R         | ディレクトリを再描画する（別タブでファイルを追加したときなどに使う）          |
-| m         | カーソル下のファイルまたはディレクトリを操作するメニューを表示する。リネーム、移動、削除、またはディレクトリに新規ファイルやディレクトリの追加を行いたい場合に使う。|
-| I         | 通常、隠しファイル（.で始まるファイルなど）はツリーに表示されないが、これを表示したり非表示にしたりする |
-| B         | ブックマークの一覧をツリー上に表示する                                        |
-| :Bookmark | カーソル下のファイルをブックマークに登録する                                  |
-| :ClearBookmarks | カーソル下のファイルをブックマークから解除する                          |
+| `o`<br>`<enter>` | カーソル下のファイルまたはディレクトリを開く                               |
+| `t`       | カーソル下のタブで開きそちらを表示する。                                      |
+| `T`       | カーソル下のタブで開くが、そちらは表示せず現在のタブにとどまる。              |
+| `P`       | ルートディレクトリの位置へカーソル移動する。                                  |
+| `p`       | 親ディレクトリの位置へカーソル移動する。                                      |
+| `j`       | ひとつ下へカーソル移動する                                                    |
+| `k`       | ひとつ上へカーソル移動する                                                    |
+| `u`       | 親ディレクトリでツリーを開きなおす                                            |
+| `R`       | ディレクトリを再描画する（別タブでファイルを追加したときなどに使う）          |
+| `m`       | カーソル下のファイルまたはディレクトリを操作するメニューを表示する。リネーム、移動、削除、またはディレクトリに新規ファイルやディレクトリの追加を行いたい場合に使う。|
+| `I`       | 通常、隠しファイル（.で始まるファイルなど）はツリーに表示されないが、これを表示したり非表示にしたりする |
+| `B`       | ブックマークの一覧をツリー上に表示する                                        |
+| `:Bookmark` | カーソル下のファイルをブックマークに登録する                                  |
+| `:ClearBookmarks` | カーソル下のファイルをブックマークから解除する                          |
 
 
 ## アンインストール方法
