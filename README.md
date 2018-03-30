@@ -161,7 +161,7 @@ Remove all clutter and focus only on the essential. Similar to iA Writer or Writ
     :colorscheme peaksea
     :set background=dark
 
-永続的に変更したい場合、vimrc/extended.vim の colorscheme, background 設定の部分を書き換えてください。
+永続的に変更したい場合、**~/.vim_runtime/vimrc/extended.vim** の colorscheme, background 設定の部分を書き換えてください。
 
 
 ## 同梱されているモード
@@ -228,17 +228,31 @@ pathogen プラグインが自動的に読み込みます。
 |`<leader>bd`       | 現在開いているバッファを閉じる                                                            |
 |`<leader>ba`       | すべてのバッファを閉じる                                                                  |
 |`<leader>tn`       | :tabnew と同じ。タブを新しく開く。                                                        |
-|`<leader>to`       | :tabonly と同じ。※TODO                                                                   |
-|`<leader>tc`       | :tabclose と同じ。タブを閉じる。                                                          |
+|`<leader>to`       | :tabonly と同じ。現在のタブ以外を閉じる。                                                 |
+|`<leader>tc`       | :tabclose と同じ。現在のタブを閉じる。                                                    |
 |`<leader>tm`       | :tabmove と同じ。タブ位置を移動する。`<leader>tm 0` で、現在のタブを一番左に移動する。    |
 |`<leader>te`       | ※TODO - Opens a new tab with the current buffer's path. Super useful when editing files in the same directory. |
 |`<leader>cd`       | カレントディレクトリを移動する。[CWD](http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file) |
 |`<leader>q`        | 走り書き用のバッファを開く                                                                |
 |`<leader>pp`       | ペーストモード、通常モードの切り替えを行う。<br>通常モードで貼り付けすると勝手にインデントしたりしてうまく貼りつけできないが、ペーストモードにするとうまくいく。|
-|`<leader>j`        | カーソル下にある関数、メソッドの定義元にジャンプする。<br> この機能を使うためにはタグファイルを作成する必要がある。※TODO |
+|`<leader>j`        | カーソル下にある関数、メソッドの定義元にジャンプ（別ウィンドウ）する。複数ある場合は選択ウィンドウを表示する。<br> この機能を使うためにはタグファイルを作成する必要がある。以下注１参照。|
 |`<leader>jb`       | タグジャンプしたあと、元の位置に戻る。                                                    |
 |`<leader>eu`       | 開いているファイルを utf-8 で開きなおす。                                                 |
 |`<leader>ec`       | 開いているファイルを cp932(windows sjis) で開きなおす。                                   |
+
+**注１** : タグ機能を使うには、`ctags`がインストールされている必要があります。
+
+    yum install ctags
+
+そのうえで、以下のようなコマンドラインでタグファイルを作成します。
+私は、これらを crontab にて５分ごとに実行するようにしています。
+（ファイルの保存時にこれを実行する方法もあるようですが、私はしていません）
+
+    (phpの場合)
+    /usr/bin/ctags --languages=php --append=yes --recurse=yes --php-kinds=cfd  -f ~/.vim_runtime/data/tags/php.tags {{プロジェクトディレクトリ}}
+
+    (javascriptの場合)
+    /usr/bin/ctags --languages=javascript --append=yes --recurse=yes --exclude=*.min.js --regex-javascript="/^[ \t]*([\'\"]?)([A-Za-z0-9_.]+)\1[ \t]*[:=][ \t]*function[ \t]*\(/\2/I,inner/i" -f ~/.vim_runtime/data/tags/javascript.tags {{プロジェクトディレクトリ}}
 
 
 ### Visual mode mappings
@@ -339,35 +353,17 @@ Cope mappings:
 
 ### Plugin related mappings
 	
-Open `ack.vim` for fast search:
-	
-	map <leader>a :Ack 
+| キー              | プラグイン     | 操作                                                                                     |
+| <leader>a         | [ack.vim](https://github.com/mileszs/ack.vim) | `:vimgrep *keyword* \*\*/\*.php | cw` 的なファイル横断検索の高速化＆簡易化処理。`<leader>a *keyword*` でほとんど同様のことが可能。ただし注１参照。|
+| <leader>o         | [bufexplorer](https://github.com/vim-scripts/bufexplorer.zip) | 現在のバッファを参照できる。              |
+| <leader>f         | [MRU.vim](https://github.com/vim-scripts/mru.vim) | 最近開いたファイルの一覧を参照できる。                |
+| <leader>cp<br><c-p> | [ctrlp.vim](https://github.com/kien/ctrlp.vim) | カレントディレクトリ配下にあるファイルをインクリメンタルサーチして開くことができる。|
+| <leader>cb        | [ctrlp.vim](https://github.com/kien/ctrlp.vim) | TODO :CtrlPBuffer                                        |
+| <leader>cd        | [ctrlp.vim](https://github.com/kien/ctrlp.vim) | TODO :CtrlPDir                                           |
+| <leader>nn        | [NERD Tree](https://github.com/scrooloose/nerdtree) | vim でツリー表示するための NERDTree をウィンドウ左に表示したり非表示にしたりする。注２参照。|
+| <leader>nb        | [NERD Tree](https://github.com/scrooloose/nerdtree) | TODO :NERDTreeFromBookmark                          |
+| <leader>nf        | [NERD Tree](https://github.com/scrooloose/nerdtree) | TODO :NERDTreeFind                                  |
 
-Ack を使うために、環境によっては以下のようにして ag(the_silver_searcher)のインストールが必要かもしれません。
-
-    $ sudo rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
-    $ sudo yum install the_silver_searcher --enablerepo=epel
-
-Open [bufexplorer](https://github.com/vim-scripts/bufexplorer.zip) to see and manage the current buffers (`<leader>o`):
-    
-    map <leader>o :BufExplorer<cr>
-
-Open [MRU.vim](https://github.com/vim-scripts/mru.vim) to see the recently open files (`<leader>f`):
-
-    map <leader>f :MRU<CR>
-
-Open [ctrlp.vim](https://github.com/kien/ctrlp.vim) plugin to quickly find a file or a buffer (`<leader>cp` or `<ctrl>p`):
-    
-    let g:ctrlp_map = '<c-p>'
-    map <leader>cp :CtrlP<cr>
-    map <leader>cb :CtrlPBuffer<cr>
-    map <leader>cd :CtrlPDir<cr>
-
-[NERD Tree](https://github.com/scrooloose/nerdtree) mappings:
-
-    map <leader>nn :NERDTreeToggle<cr>
-    map <leader>nb :NERDTreeFromBookmark 
-    map <leader>nf :NERDTreeFind<cr>
 
 [goyo.vim](https://github.com/junegunn/goyo.vim) and [vim-zenroom2](https://github.com/amix/vim-zenroom2) lets you only focus on one thing at a time. It removes all the distractions and centers the content. It has a special look when editing Markdown, reStructuredText and textfiles. It only has one mapping. (`<leader>z`)
 
@@ -401,6 +397,33 @@ Open [ctrlp.vim](https://github.com/kien/ctrlp.vim) plugin to quickly find a fil
 [neocomplcache] complication
 
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+
+**注１**
+Ack を使うために、環境によっては以下のようにして ag(the_silver_searcher)のインストールが必要かもしれません。
+
+    (CentOS6)
+    $ sudo rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+    $ sudo yum install the_silver_searcher --enablerepo=epel
+
+**注２**
+NERDTree では以下のコマンドで、ファイル、ディレクトリに対して様々な操作をすることができます。
+
+| コマンド  | 操作                                                                          |
+| o<br><enter> | カーソル下のファイルまたはディレクトリを開く                               |
+| t         | カーソル下のタブで開きそちらを表示する。                                      |
+| T         | カーソル下のタブで開くが、そちらは表示せず現在のタブにとどまる。              |
+| P         | ルートディレクトリの位置へカーソル移動する。                                  |
+| p         | 親ディレクトリの位置へカーソル移動する。                                      |
+| j         | ひとつ下へカーソル移動する                                                    |
+| k         | ひとつ上へカーソル移動する                                                    |
+| u         | 親ディレクトリでツリーを開きなおす                                            |
+| R         | ディレクトリを再描画する（別タブでファイルを追加したときなどに使う）          |
+| m         | カーソル下のファイルまたはディレクトリを操作するメニューを表示する。リネーム、移動、削除、またはディレクトリに新規ファイルやディレクトリの追加を行いたい場合に使う。|
+| I         | 通常、隠しファイル（.で始まるファイルなど）はツリーに表示されないが、これを表示したり非表示にしたりする |
+| B         | ブックマークの一覧をツリー上に表示する                                        |
+| :Bookmark | カーソル下のファイルをブックマークに登録する                                  |
+| :ClearBookmarks | カーソル下のファイルをブックマークから解除する                          |
 
 
 ## アンインストール方法
