@@ -389,7 +389,17 @@ Cope mappings:
 
 [vim-ref] show php manual
 
+    (Only in php)
     nmap <silent>K <Plug>(ref-keyword)
+     
+    (Search Jananese-English dictionary)
+    nmap <Leader>dj :<C-u>Ref webdict je<Space>
+    nmap <Leader>de :<C-u>Ref webdict ej<Space>
+
+    (Search wiki)
+    nmap <Leader>dw :<C-u>Ref webdict wiki<Space>
+
+* needs text browser(like lynx, w3m etc)
 
 [taglist.vim] show taglist
 
