@@ -206,8 +206,8 @@ let g:gitgutter_sign_removed = 'D'
 let g:gitgutter_sign_removed_first_line = 'DD'
 let g:gitgutter_sign_modified_removed = 'MM'
 nnoremap <silent> <leader>df :GitGutterToggle<cr>
-nnoremap <silent> <leader>dn <Plug>GitGutterNextHunk
-nnoremap <silent> <leader>dp <Plug>GitGutterPrevHunk
+nnoremap <silent> <leader>dn :GitGutterNextHunk<cr>
+nnoremap <silent> <leader>dp :GitGutterPrevHunk<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fugitive.vim
