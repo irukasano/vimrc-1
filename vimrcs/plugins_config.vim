@@ -107,13 +107,9 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
       \ 'colorscheme': 'wombat',
-      \ }
-
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
-      \             ['fugitive', 'readonly', 'filename', 'modified'] ],
+      \             ['fugitive', 'gitgutter', 'readonly', 'filename', 'modified'] ],
       \   'right': [ [ 'lineinfo' ], 
       \              ['percent'], 
       \              ['fileformat','fileencoding', 'filetype'] ]
@@ -126,14 +122,39 @@ let g:lightline = {
       \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
       \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
       \ },
+      \ 'component_function': {
+      \   'gitgutter': 'LightlineGitGutter'
+      \ },
       \ 'component_visible_condition': {
       \   'readonly': '(&filetype!="help"&& &readonly)',
       \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
       \ },
       \ 'separator': { 'left': ' ', 'right': ' ' },
-      \ 'subseparator': { 'left': ' ', 'right': ' ' }
+      \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
+
+function! LightlineGitGutter()
+  if ! exists('*GitGutterGetHunkSummary')
+        \ || ! get(g:, 'gitgutter_enabled', 0)
+        \ || winwidth('.') <= 50
+    return ''
+  endif
+  let symbols = [
+        \ g:gitgutter_sign_added . ' ',
+        \ g:gitgutter_sign_modified . ' ',
+        \ g:gitgutter_sign_removed . ' '
+        \ ]
+  let hunks = GitGutterGetHunkSummary()
+  let ret = []
+  for i in [0, 1, 2]
+    if hunks[i] > 0
+      call add(ret, symbols[i] . hunks[i])
+    endif
+  endfor
+  return join(ret, ' ')
+endfunction
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vimroom
@@ -177,10 +198,16 @@ nnoremap <silent> <leader>c :call SyntasticCheckCoffeescript()<cr>
 " => Git gutter (Git diff)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled=0
+let g:gitgutter_async=0
 let g:gitgutter_highlight_lines = 1
-nnoremap <silent> <leader>d :GitGutterToggle<cr>
-nnoremap <silent> <leader>dj <Plug>GitGutterNextHunk
-nnoremap <silent> <leader>dk <Plug>GitGutterPrevHunk
+let g:gitgutter_sign_added = 'A'
+let g:gitgutter_sign_modified = 'M'
+let g:gitgutter_sign_removed = 'D'
+let g:gitgutter_sign_removed_first_line = 'DD'
+let g:gitgutter_sign_modified_removed = 'MM'
+nnoremap <silent> <leader>df :GitGutterToggle<cr>
+nnoremap <silent> <leader>dn <Plug>GitGutterNextHunk
+nnoremap <silent> <leader>dp <Plug>GitGutterPrevHunk
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fugitive.vim
