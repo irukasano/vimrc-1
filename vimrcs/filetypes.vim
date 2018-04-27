@@ -95,5 +95,7 @@ let g:php_sql_query     = 1
 " $VIMRUNTIME/syntax/sql.vim
 let g:sql_type_default = 'mysql'
 
+" Cakephp unittest
+au FileType php map <leader>ut :set makeprg=%:p:h:h:h:h:h/app/Console/cake\ test\ app\ %:h:t/%:p:t<cr>:make<cr>
 
 

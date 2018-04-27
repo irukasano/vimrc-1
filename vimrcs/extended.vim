@@ -152,7 +152,9 @@ map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
-
+" TODO リスト
+map <leader>td :Ack TODO %<cr>
+map <leader>tda :Ack TODO -G \.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
