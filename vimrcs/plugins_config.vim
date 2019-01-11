@@ -264,6 +264,38 @@ nmap <Leader>de :<C-u>Ref webdict ej<Space>
 nmap <Leader>dw :<C-u>Ref webdict wiki<Space>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => quickrun
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup QuickrunAc
+    autocmd!
+    autocmd QuickrunAc BufNewFile,BufRead *Test.php setlocal ft=php.cakeunit
+    autocmd QuickrunAc FileType quickrun AnsiEsc
+augroup END
+
+let g:quickrun_config = {}
+"let g:quickrun_config["_"] = {
+"\    'split' : 'vertical',
+"\ }
+let g:quickrun_config["php.cakeunit"] = {
+\    'command' : 'Console/cake',
+\    'cmdopt'  : 'test app',
+\    'exec'    : 'cd %s:h:h:h:h;%c %o %s:h:t/%s:t',
+\    'outputter' : 'error', 
+\    'outputter/error/error'   : 'quickfix', 
+\    'outputter/error/success' : 'buffer', 
+\    'outputter/buffer/split'  : ':vertical botright', 
+\    'outputter/quickfix/into'   : 1, 
+\    'outputter/quickfix/errorformat' : '%f:%l,%m in %f on line %l',
+\ }
+"set splitright
+
+"\    'outputter/buffer/split'  : ':rightbelow 8sp', 
+"\    'outputter/buffer/split'  : '%{winwidth(0) * 2 < winheight(0) * 5 ? "" : "vertical"}',
+
+nmap <Leader>r :QuickRun<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => taglist
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "MEMO:$ ctags --list-maps : ctags supported filetype.
