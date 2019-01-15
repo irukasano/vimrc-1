@@ -273,9 +273,9 @@ augroup QuickrunAc
 augroup END
 
 let g:quickrun_config = {}
-"let g:quickrun_config["_"] = {
-"\    'split' : 'vertical',
-"\ }
+let g:quickrun_config["_"] = {
+\    'outputter/buffer/split'  : ':vertical botright', 
+\ }
 let g:quickrun_config["php.cakeunit"] = {
 \    'command' : 'Console/cake',
 \    'cmdopt'  : 'test app',
@@ -293,6 +293,8 @@ let g:quickrun_config["php.cakeunit"] = {
 "\    'outputter/buffer/split'  : '%{winwidth(0) * 2 < winheight(0) * 5 ? "" : "vertical"}',
 
 nmap <Leader>r :QuickRun<CR>
+"nmap <Leader>rt :QuickRun php.cakeunit<CR>
+nmap <Leader>rp :QuickRun php<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
