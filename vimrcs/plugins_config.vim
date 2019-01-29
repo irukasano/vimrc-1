@@ -284,7 +284,8 @@ let g:quickrun_config["php.cakeunit"] = {
 \    'outputter/error/error'   : 'quickfix', 
 \    'outputter/error/success' : 'buffer', 
 \    'outputter/buffer/split'  : ':vertical botright', 
-\    'outputter/quickfix/into'   : 1, 
+\    'outputter/quickfix/into'        : 1, 
+\    'outputter/quickfix/open_cmd'    : 'copen 30 ', 
 \    'outputter/quickfix/errorformat' : '%f:%l,%m in %f on line %l',
 \ }
 "set splitright
