@@ -103,3 +103,7 @@ au FileType php map <leader>ut :set makeprg=%:p:h:h:h:h:h/app/Console/cake\ test
 """"""""""""""""""""""""""""""
 au BufNewFile,BufRead *.vue setfiletype vue.html
 
+au Filetype vue.html map <leader>bb :set makeprg=cordova\ build\ browser<cr>:make<cr>
+
+
+
