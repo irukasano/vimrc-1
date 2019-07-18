@@ -98,4 +98,8 @@ let g:sql_type_default = 'mysql'
 " Cakephp unittest
 au FileType php map <leader>ut :set makeprg=%:p:h:h:h:h:h/app/Console/cake\ test\ app\ %:h:t/%:p:t<cr>:make<cr>
 
+""""""""""""""""""""""""""""""
+" => Vue.js section
+""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.vue setfiletype vue.html
 
