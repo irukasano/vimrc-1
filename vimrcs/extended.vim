@@ -30,7 +30,8 @@ set guioptions-=L
 " Colorscheme
 set background=dark
 "colorscheme default
-colorscheme peaksea
+colorscheme darkblue
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
