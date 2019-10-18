@@ -129,7 +129,7 @@ let g:lightline = {
       \   'fileformat': '%{&filetype=="help"?"":&fileformat}',
       \   'fileencoding': '%{&filetype=="help"?"":(strlen(&fenc) ? &fenc : &enc)}',
       \   'filetype': '%{&filetype=="help"?"":&filetype}',
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"":""}',
       \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
       \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
       \ },
