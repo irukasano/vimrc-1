@@ -157,7 +157,7 @@ let g:lightline = {
       \   'percent': 'LightlinePercent'
       \ },
       \ 'separator': { 'left': "", 'right': "" },
-      \ 'subseparator': { 'left': "|", 'right': "|" }
+      \ 'subseparator': { 'left': "\u239f", 'right': "\u239f" }
       \ }
 "      \   'readonly': '%{"\ue0a2"}',
 "      \   'modified': '%{&modified?"\u270F":&modifiable?"":"-"}',
@@ -173,7 +173,7 @@ let g:lightline = {
 "      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
 
 function! LightlineReadonly()
-  if &ft ==# "help" || &ft ==# "nerdtree" 
+  if &ft ==# "help" || &ft ==# "nerdtree" || &ft ==# "taglist"
     return ''
   endif
   if &readonly 
@@ -183,7 +183,7 @@ function! LightlineReadonly()
 endfunction
 
 function! LightlineModified()
-  if &ft ==# "nerdtree" 
+  if &ft ==# "nerdtree" || &ft ==# "taglist"
     return ''
   endif
   if &modified 
@@ -196,7 +196,7 @@ function! LightlineModified()
 endfunction
 
 function! LightlineFugitive()
-  if &ft ==# "help" || &ft ==# "nerdtree" 
+  if &ft ==# "help" || &ft ==# "nerdtree" || &ft ==# "taglist"
     return ''
   endif
   if "" ==# fugitive#Head()
@@ -206,35 +206,35 @@ function! LightlineFugitive()
 endfunction
 
 function! LightlinePercent()
-  if &ft ==# "help" || &ft ==# "nerdtree" 
+  if &ft ==# "help" || &ft ==# "nerdtree" || &ft ==# "taglist"
     return ''
   endif
   return '%3p%%'
 endfunction
 
 function! LightlineLineinfo()
-  if &ft ==# "help" || &ft ==# "nerdtree" 
+  if &ft ==# "help" || &ft ==# "nerdtree" || &ft ==# "taglist"
     return ''
   endif
   return '%4l:%3v'
 endfunction
 
 function! LightlineFileencoding()
-  if &ft ==# "help" || &ft ==# "nerdtree" 
+  if &ft ==# "help" || &ft ==# "nerdtree" || &ft ==# "taglist"
     return ''
   endif
   return (strlen(&fenc) ? &fenc : &enc)
 endfunction
 
 function! LightlineFileformat()
-  if &ft ==# "help" || &ft ==# "nerdtree" 
+  if &ft ==# "help" || &ft ==# "nerdtree" || &ft ==# "taglist"
     return ''
   endif
   return &fileformat
 endfunction
 
 function! LightlineFiletype()
-  if &ft ==# "help" || &ft ==# "nerdtree" 
+  if &ft ==# "help" || &ft ==# "nerdtree" || &ft ==# "taglist" 
     return ''
   endif
   return &ft
@@ -242,15 +242,14 @@ endfunction
 
 function! LightlineFilename()
   let fname = expand('%:t')
-"  if &ft ==# "help" || &ft ==# "nerdtree" 
-  if &ft ==# "nerdtree" 
+  if &ft ==# "nerdtree" || &ft ==# "taglist" 
     return ''
   endif
   return (fname !=# '' ? fname : '[No Name]')
 endfunction
 
 function! LightlineGitGutter()
-  if &ft ==# "help" || &ft ==# "nerdtree" 
+  if &ft ==# "help" || &ft ==# "nerdtree" || &ft ==# "taglist"
     return ''
   endif
   if ! exists('*GitGutterGetHunkSummary')
@@ -278,6 +277,7 @@ function! LightlineMode()
           \ &ft == 'vimfiler' ? 'VimFiler' :
           \ &ft == 'vimshell' ? 'VimShell' :
           \ &ft == 'nerdtree' ? 'NERD' :
+          \ &ft == 'taglist' ? 'TAG' :
           \ lightline#mode()
 endfunction
 
