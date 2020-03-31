@@ -90,6 +90,7 @@ endif
 
 "Show line number
 set number
+set numberwidth=6
 
 "Always show current position
 set ruler

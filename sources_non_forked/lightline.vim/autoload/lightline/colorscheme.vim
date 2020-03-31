@@ -2,7 +2,7 @@
 " Filename: autoload/lightline/colorscheme.vim
 " Author: itchyny
 " License: MIT License
-" Last Change: 2017/11/29 12:54:05.
+" Last Change: 2019/09/07 11:20:37.
 " =============================================================================
 
 let s:save_cpo = &cpo
@@ -224,7 +224,7 @@ function! lightline#colorscheme#flatten(p) abort
   return a:p
 endfunction
 
-if has('gui_running')
+if has('gui_running') || (has('termguicolors') && &termguicolors)
   function! lightline#colorscheme#background() abort
     return &background
   endfunction
@@ -243,7 +243,7 @@ else
     endif
     let fg_color = synIDattr(synIDtrans(hlID('Normal')), 'fg', 'cterm')
     if fg_color !=# ''
-      if fg_color < 8 || 232 <= fg_color && fg_color < 244
+      if fg_color < 7 || 232 <= fg_color && fg_color < 244
         return 'light'
       elseif 8 <= fg_color && fg_color < 16 || 244 <= fg_color
         return 'dark'

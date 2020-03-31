@@ -116,36 +116,143 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lightline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:lightline_unmodifiable_char = "\u26d4"
+let s:lightline_modified_char = "\u270f"
+let s:lightline_readonly_char = "\ue0a2"
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'landscape2',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
-      \             ['fugitive', 'gitgutter', 'readonly', 'filename', 'modified'] ],
-      \   'right': [ [ 'lineinfo' ], 
-      \              ['percent'], 
+      \             ['fugitive', 'gitgutter', 'readonly', 'modified', 'filename']],
+      \   'right': [ ['lineinfo', 'percent'], 
       \              ['fileformat','fileencoding', 'filetype'] ]
       \ },
-      \ 'component': {
-      \   'fileformat': '%{&filetype=="help"?"":&fileformat}',
-      \   'fileencoding': '%{&filetype=="help"?"":(strlen(&fenc) ? &fenc : &enc)}',
-      \   'filetype': '%{&filetype=="help"?"":&filetype}',
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ 'inactive': {
+      \   'left': [ ['mode'], ['filename']],
+      \   'right': []
       \ },
-      \ 'component_function': {
-      \   'gitgutter': 'LightlineGitGutter'
+      \ 'tab': {
+      \   'active': ['tabnum', 'filename', 'modified'],
+      \   'inactive': ['tabnum', 'filename', 'modified']
+      \ },
+      \ 'component': {
       \ },
       \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
       \ },
-      \ 'separator': { 'left': ' ', 'right': ' ' },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ 'component_function': {
+      \   'readonly': 'LightlineReadonly',
+      \   'modified': 'LightlineModified',
+      \   'filename': 'LightlineFilename',
+      \   'filetype': 'LightlineFiletype',
+      \   'fileformat': 'LightlineFileformat',
+      \   'fileencoding': 'LightlineFileencoding',
+      \   'fugitive': 'LightlineFugitive',
+      \   'mode': 'LightlineMode',
+      \   'gitgutter': 'LightlineGitGutter'
+      \ },
+      \ 'component_function_visible_condition': {
+      \ },
+      \ 'component_expand': {
+      \   'lineinfo': 'LightlineLineinfo',
+      \   'percent': 'LightlinePercent'
+      \ },
+      \ 'separator': { 'left': "", 'right': "" },
+      \ 'subseparator': { 'left': "|", 'right': "|" }
       \ }
+"      \   'readonly': '%{"\ue0a2"}',
+"      \   'modified': '%{&modified?"\u270F":&modifiable?"":"-"}',
+"      \   'readonly': '(&filetype!="help"&& &readonly)',
+"      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))'
+"      \   'fugitive': '%{fugitive#Head()}'
+"      \   'fugitive': '(""!=fugitive#Head())',
+"      \   'fileencoding': '%{(strlen(&fenc) ? &fenc : &enc)}',
+"      \   'fugitive': '(exists("*fugitive#Head") && ""!=fugitive#Head())',
+"      \   'filetype': '%{&filetype=="help"?"":&filetype}',
+"      \   'fileformat': '%{&filetype=="help"?"":&fileformat}',
+"      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+
+function! LightlineReadonly()
+  if &ft ==# "help" || &ft ==# "nerdtree" 
+    return ''
+  endif
+  if &readonly 
+    return s:lightline_readonly_char
+  endif
+  return ''
+endfunction
+
+function! LightlineModified()
+  if &ft ==# "nerdtree" 
+    return ''
+  endif
+  if &modified 
+    return s:lightline_modified_char
+  endif
+  if !&modifiable
+    return s:lightline_unmodifiable_char
+  endif
+  return ''
+endfunction
+
+function! LightlineFugitive()
+  if &ft ==# "help" || &ft ==# "nerdtree" 
+    return ''
+  endif
+  if "" ==# fugitive#Head()
+    return ''
+  endif
+  return fugitive#Head()
+endfunction
+
+function! LightlinePercent()
+  if &ft ==# "help" || &ft ==# "nerdtree" 
+    return ''
+  endif
+  return '%3p%%'
+endfunction
+
+function! LightlineLineinfo()
+  if &ft ==# "help" || &ft ==# "nerdtree" 
+    return ''
+  endif
+  return '%4l:%3v'
+endfunction
+
+function! LightlineFileencoding()
+  if &ft ==# "help" || &ft ==# "nerdtree" 
+    return ''
+  endif
+  return (strlen(&fenc) ? &fenc : &enc)
+endfunction
+
+function! LightlineFileformat()
+  if &ft ==# "help" || &ft ==# "nerdtree" 
+    return ''
+  endif
+  return &fileformat
+endfunction
+
+function! LightlineFiletype()
+  if &ft ==# "help" || &ft ==# "nerdtree" 
+    return ''
+  endif
+  return &ft
+endfunction
+
+function! LightlineFilename()
+  let fname = expand('%:t')
+"  if &ft ==# "help" || &ft ==# "nerdtree" 
+  if &ft ==# "nerdtree" 
+    return ''
+  endif
+  return (fname !=# '' ? fname : '[No Name]')
+endfunction
 
 function! LightlineGitGutter()
+  if &ft ==# "help" || &ft ==# "nerdtree" 
+    return ''
+  endif
   if ! exists('*GitGutterGetHunkSummary')
         \ || ! get(g:, 'gitgutter_enabled', 0)
         \ || winwidth('.') <= 50
@@ -164,6 +271,14 @@ function! LightlineGitGutter()
     endif
   endfor
   return join(ret, ' ')
+endfunction
+
+function! LightlineMode()
+  return  &ft == 'unite' ? 'Unite' :
+          \ &ft == 'vimfiler' ? 'VimFiler' :
+          \ &ft == 'vimshell' ? 'VimShell' :
+          \ &ft == 'nerdtree' ? 'NERD' :
+          \ lightline#mode()
 endfunction
 
 
@@ -210,15 +325,24 @@ nnoremap <silent> <leader>c :call SyntasticCheckCoffeescript()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled=0
 let g:gitgutter_async=0
-let g:gitgutter_highlight_lines = 1
-let g:gitgutter_sign_added = 'A'
-let g:gitgutter_sign_modified = 'M'
-let g:gitgutter_sign_removed = 'D'
+"let g:gitgutter_highlight_lines = 1
+let g:gitgutter_highlight_lines = 0
+let g:gitgutter_sign_added = "\u2795" 
+let g:gitgutter_sign_modified = "\u270f"
+let g:gitgutter_sign_removed = "\u2796" 
 let g:gitgutter_sign_removed_first_line = 'DD'
 let g:gitgutter_sign_modified_removed = 'MM'
 nnoremap <silent> <leader>df :GitGutterToggle<cr>
 nnoremap <silent> <leader>dn :GitGutterNextHunk<cr>
 nnoremap <silent> <leader>dp :GitGutterPrevHunk<cr>
+
+"highlight clear SignColumn
+"highlight GitGutterAdd    guifg=#009900 guibg=#073642 ctermfg=2 ctermbg=0
+"highlight GitGutterChange guifg=#bbbb00 guibg=#073642 ctermfg=3 ctermbg=0
+"highlight GitGutterDelete guifg=#ff2222 guibg=#073642 ctermfg=1 ctermbg=0
+
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fugitive.vim
