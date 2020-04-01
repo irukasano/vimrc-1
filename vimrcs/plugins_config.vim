@@ -170,10 +170,27 @@ let g:lightline = {
 function! LightlineTabFilename(n) abort
   let buflist = tabpagebuflist(a:n)
   let winnr = tabpagewinnr(a:n)
+  let ft = gettabwinvar(a:n, winnr, '&filetype')
+  if ft ==# "nerdtree"
+    return 'NERD'
+  endif
+  if ft ==# "help"
+    return 'HELP'
+  endif
+  if ft ==# "taglist"
+    return 'TAG'
+  endif
+
   "let _ = pathshorten(expand('#'.buflist[winnr - 1].':f'))
   "let _ = expand('#'.buflist[winnr - 1].':p')
   let _ = expand('#'.buflist[winnr - 1])
-  return _ !=# '' ? _ : '[No Name]'
+  if _ ==# '' 
+    return '[No Name]'
+  endif
+  let h1 = expand('#'.buflist[winnr - 1].':p:h:h:t')
+  let h2 = expand('#'.buflist[winnr - 1].':p:h:t')
+  let f = expand('#'.buflist[winnr - 1].':t')
+  return h1."/".h2."/".f
 endfunction
 
 function! LightlineTabModified(n) abort
