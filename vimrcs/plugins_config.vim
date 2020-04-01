@@ -123,7 +123,7 @@ let g:lightline = {
       \ 'colorscheme': 'landscape2',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
-      \             ['fugitive', 'gitgutter', 'readonly', 'modified', 'filename']],
+      \             ['fugitive', 'gitgutter', 'readonly', 'modified', 'filename', 'dirname']],
       \   'right': [ ['lineinfo', 'percent'], 
       \              ['fileformat','fileencoding', 'filetype'] ]
       \ },
@@ -132,8 +132,8 @@ let g:lightline = {
       \   'right': []
       \ },
       \ 'tab': {
-      \   'active': ['tabnum', 'filename', 'modified'],
-      \   'inactive': ['tabnum', 'filename', 'modified']
+      \   'active': ['tabnum', 'filename', 'readonly', 'modified'],
+      \   'inactive': ['tabnum', 'filename', 'readonly', 'modified']
       \ },
       \ 'component': {
       \ },
@@ -143,6 +143,7 @@ let g:lightline = {
       \   'readonly': 'LightlineReadonly',
       \   'modified': 'LightlineModified',
       \   'filename': 'LightlineFilename',
+      \   'dirname': 'LightlineDirname',
       \   'filetype': 'LightlineFiletype',
       \   'fileformat': 'LightlineFileformat',
       \   'fileencoding': 'LightlineFileencoding',
@@ -156,21 +157,39 @@ let g:lightline = {
       \   'lineinfo': 'LightlineLineinfo',
       \   'percent': 'LightlinePercent'
       \ },
+      \ 'tab_component_function': {
+      \   'filename': 'LightlineTabFilename',
+      \   'modified': 'LightlineTabModified',
+      \   'readonly': 'LightlineTabReadonly',
+      \   'tabnum': 'LightlineTabTabnum'
+      \ },
       \ 'separator': { 'left': "", 'right': "" },
       \ 'subseparator': { 'left': "\u239f", 'right': "\u239f" }
       \ }
-"      \   'readonly': '%{"\ue0a2"}',
-"      \   'modified': '%{&modified?"\u270F":&modifiable?"":"-"}',
-"      \   'readonly': '(&filetype!="help"&& &readonly)',
-"      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))'
-"      \   'fugitive': '%{fugitive#Head()}'
-"      \   'fugitive': '(""!=fugitive#Head())',
-"      \   'fileencoding': '%{(strlen(&fenc) ? &fenc : &enc)}',
-"      \   'fugitive': '(exists("*fugitive#Head") && ""!=fugitive#Head())',
-"      \   'filetype': '%{&filetype=="help"?"":&filetype}',
-"      \   'fileformat': '%{&filetype=="help"?"":&fileformat}',
-"      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-"      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+
+function! LightlineTabFilename(n) abort
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  "let _ = pathshorten(expand('#'.buflist[winnr - 1].':f'))
+  "let _ = expand('#'.buflist[winnr - 1].':p')
+  let _ = expand('#'.buflist[winnr - 1])
+  return _ !=# '' ? _ : '[No Name]'
+endfunction
+
+function! LightlineTabModified(n) abort
+  let winnr = tabpagewinnr(a:n)
+  return gettabwinvar(a:n, winnr, '&modified') ? s:lightline_modified_char : 
+    \ gettabwinvar(a:n, winnr, '&modifiable') ? '' : s:lightline_unmodifiable_char
+endfunction
+
+function! LightlineTabReadonly(n) abort
+  let winnr = tabpagewinnr(a:n)
+  return gettabwinvar(a:n, winnr, '&readonly') ? s:lightline_readonly_char : ''
+endfunction
+
+function! LightlineTabTabnum(n) abort
+  return a:n.')'
+endfunction
 
 function! LightlineReadonly()
   if &ft ==# "help" || &ft ==# "nerdtree" || &ft ==# "taglist"
@@ -242,6 +261,14 @@ endfunction
 
 function! LightlineFilename()
   let fname = expand('%:t')
+  if &ft ==# "nerdtree" || &ft ==# "taglist" 
+    return ''
+  endif
+  return (fname !=# '' ? fname : '[No Name]')
+endfunction
+
+function! LightlineDirname()
+  let fname = expand('%:p:h')
   if &ft ==# "nerdtree" || &ft ==# "taglist" 
     return ''
   endif
