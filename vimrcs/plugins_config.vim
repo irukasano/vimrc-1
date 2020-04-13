@@ -163,9 +163,14 @@ let g:lightline = {
       \   'readonly': 'LightlineTabReadonly',
       \   'tabnum': 'LightlineTabTabnum'
       \ },
-      \ 'separator': { 'left': "", 'right': "" },
-      \ 'subseparator': { 'left': "\u239f", 'right': "\u239f" }
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \ }
+
+"      if you cant use powerline font, use below
+"      \ 'separator': { 'left': "", 'right': "" },
+"      \ 'subseparator': { 'left': "\u239f", 'right': "\u239f" }
+
 
 function! LightlineTabFilename(n) abort
   let buflist = tabpagebuflist(a:n)
