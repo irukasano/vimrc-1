@@ -125,7 +125,7 @@ let g:lightline = {
       \ 'colorscheme': 'landscape2',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
-      \             ['fugitive', 'gitgutter', 'readonly', 'modified', 'filename', 'dirname']],
+      \             ['fugitive', 'gitgutter', 'filename', 'readonly', 'modified', 'dirname']],
       \   'right': [ ['lineinfo', 'percent'], 
       \              ['fileformat','fileencoding', 'filetype'] ]
       \ },
@@ -172,6 +172,10 @@ let g:lightline = {
 "      if you cant use powerline font, use below
 "      \ 'separator': { 'left': "", 'right': "" },
 "      \ 'subseparator': { 'left': "\u239f", 'right': "\u239f" }
+"
+"      if you can use powerline font, use below
+"      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
 
 
 function! LightlineTabFilename(n) abort
@@ -290,7 +294,8 @@ function! LightlineFilename()
   if &ft ==# "nerdtree" || &ft ==# "taglist" 
     return ''
   endif
-  return (fname !=# '' ? fname : '[No Name]')
+  let icon = WebDevIconsGetFileTypeSymbol()
+  return (fname !=# '' ? icon.' '.fname : '[No Name]')
 endfunction
 
 function! LightlineDirname()
