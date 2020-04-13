@@ -90,6 +90,8 @@ set grepprg=/bin/grep\ -nH
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:NERDTreeWinPos = "left"
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeShowHidden=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
@@ -189,13 +191,14 @@ function! LightlineTabFilename(n) abort
   "let _ = pathshorten(expand('#'.buflist[winnr - 1].':f'))
   "let _ = expand('#'.buflist[winnr - 1].':p')
   let _ = expand('#'.buflist[winnr - 1])
+  let icon = WebDevIconsGetFileTypeSymbol(_)
   if _ ==# '' 
     return '[No Name]'
   endif
   let h1 = expand('#'.buflist[winnr - 1].':p:h:h:t')
   let h2 = expand('#'.buflist[winnr - 1].':p:h:t')
   let f = expand('#'.buflist[winnr - 1].':t')
-  return h1."/".h2."/".f
+  return icon." ".h1."/".h2."/".f
 endfunction
 
 function! LightlineTabModified(n) abort
@@ -243,7 +246,8 @@ function! LightlineFugitive()
   if "" ==# fugitive#Head()
     return ''
   endif
-  return fugitive#Head()
+  let _ = fugitive#head()
+  return strlen(_) ? '' . _ : ''
 endfunction
 
 function! LightlinePercent()
@@ -271,7 +275,7 @@ function! LightlineFileformat()
   if &ft ==# "help" || &ft ==# "nerdtree" || &ft ==# "taglist"
     return ''
   endif
-  return &fileformat
+  return &fileformat . ' ' . WebDevIconsGetFileFormatSymbol()
 endfunction
 
 function! LightlineFiletype()
