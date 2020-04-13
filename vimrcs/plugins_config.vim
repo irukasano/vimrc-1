@@ -125,7 +125,7 @@ let g:lightline = {
       \ 'colorscheme': 'landscape2',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
-      \             ['fugitive', 'gitgutter', 'filename', 'readonly', 'modified', 'dirname']],
+      \             ['readonly', 'modified', 'fugitive', 'gitgutter', 'filename', 'dirname']],
       \   'right': [ ['lineinfo', 'percent'], 
       \              ['fileformat','fileencoding', 'filetype'] ]
       \ },
@@ -251,6 +251,7 @@ function! LightlineFugitive()
     return ''
   endif
   let _ = fugitive#head()
+  "return strlen(_) ? _ : ''
   return strlen(_) ? '' . _ : ''
 endfunction
 
@@ -286,7 +287,8 @@ function! LightlineFiletype()
   if &ft ==# "help" || &ft ==# "nerdtree" || &ft ==# "taglist" 
     return ''
   endif
-  return &ft
+  let icon = WebDevIconsGetFileTypeSymbol()
+  return icon . ' ' . &ft
 endfunction
 
 function! LightlineFilename()
@@ -294,8 +296,7 @@ function! LightlineFilename()
   if &ft ==# "nerdtree" || &ft ==# "taglist" 
     return ''
   endif
-  let icon = WebDevIconsGetFileTypeSymbol()
-  return (fname !=# '' ? icon.' '.fname : '[No Name]')
+  return (fname !=# '' ? fname : '[No Name]')
 endfunction
 
 function! LightlineDirname()
