@@ -98,7 +98,7 @@ let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
 " map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
-map <leader>nb :Bookmark<cr>
+map <leader>nb :Bookmark 
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
