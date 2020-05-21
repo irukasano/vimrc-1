@@ -58,10 +58,19 @@ amix/vimrc をほとんどそのまま引き継いでおりますが、私の使
 もとの amix/vimrc では、[IBM Plex Mono font](https://github.com/IBM/plex) が勧められていますが
 多分日本語を含むマルチバイトフォントのことは考えられていないと思います。
 
-私が使っているのは、以下ですが、どちらも読みやすいと思います。
+コンソールアプリケーションとの関係もあり、以下の二通りで使っています。
 
-* MeiryoKe Console：Windows10 に付属のメイリオを等幅にしたものです。自分でメイリオにパッチをあてて作成します。参考）[Windows で見やすくて綺麗なフォント表示 - MeiryoKe に変更し、MacType で滑らかにする](https://digitalbox.jp/meiryoke-fixed-fonts-windows10/)
-* Consolas：Microsoft Office についてくる等幅英字フォントです。ただ、そのままでは日本語がうまく表示できないため、たとえば TeraTerm ではちょっと設定を工夫してあげる必要があります。参考）[Windows7のTeraTermでConsolasフォント使用時に日本語を表示する方法](https://gist.github.com/o-gh/5ac244d2fc5d8002a6e32d0a15c7717d)
+1. Conemu + Cica フォント
+
+この環境では色つき絵文字フォントを使うことはできませんが、それ以外は満足しています。
+
+2. Windows Terminal + Cascadia Code (+NERD Font)
+
+こちらは試用している最中ですが、なにより絵文字フォントをカラーで使うことができるため、そういったファンシーさをターミナルに求める場合はよいと思います。
+日本語は正しく表示されているように思えますが、美しいわけではありません。
+
+* Windows Terminal (https://github.com/microsoft/terminal/releases)
+* Cascadia Code(+NERD Font) (https://github.com/ryanoasis/nerd-fonts/releases)
 
 
 ## 基本バージョンのインストール
