@@ -422,7 +422,7 @@ let g:ref_detect_filetype         = {
 \    'php': 'phpmanual'
 \}
 let g:ref_phpmanual_path = $HOME.'/.vim_runtime/data/vim-ref/php-chunked-xhtml'
-"let g:ref_phpmanual_cmd = '/usr/bin/lynx -dump -nonumbers %s'
+let g:ref_phpmanual_cmd = '/usr/bin/lynx -dump -nonumbers %s'
 let g:ref_use_cache      = 1
 let g:ref_use_vimproc    = 1
 
